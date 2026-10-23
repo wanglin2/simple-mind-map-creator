@@ -75,7 +75,7 @@ AI最终会输出一个HTML文件，你可以直接在浏览器上打开查看�
 
 本SKILL中思维导图编辑能力来源于项目[mind-map](https://github.com/wanglin2/mind-map)。
 
-推荐使用该项目的客户端版本[思绪思维导图](https://github.com/wanglin2/mind-map#%E5%AE%A2%E6%88%B7%E7%AB%AF%E6%8F%92%E4%BB%B6)，一个非常强大的思维导图软件。
+推荐使用该项目的客户端版本[思绪思维导图](https://sxmind.cn/)，一个非常强大的思维导图软件。
 
 # 截图
 

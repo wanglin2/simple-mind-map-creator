@@ -528,6 +528,15 @@
               </div>
             </div>
           </div>
+          <div style="color: #333;">
+            温馨提示：JSON格式可以在
+            <span
+              style="cursor: pointer; color: #409eff; font-weight: bold"
+              @click="downloadClient"
+              >思绪思维导图</span
+            >
+            客户端中导入进行编辑。
+          </div>
         </div>
       </div>
       <!-- 快捷键侧边栏 -->
@@ -607,6 +616,9 @@
               class="iconfont"
               :class="isReadonly ? 'iconyanjing' : 'iconbianji1'"
             ></span>
+          </button>
+          <button @click="downloadClient" title="下载思绪思维导图客户端">
+            <span class="iconfont iconbendi1x"></span>
           </button>
         </div>
       </div>
@@ -1235,6 +1247,12 @@
           // 更新页面标题
           setTitle() {
             document.title = this.fileName
+          },
+          downloadClient() {
+            const a = document.createElement('a')
+            a.href = 'https://sxmind.cn/'
+            a.target = '_blank'
+            a.click()
           }
         }
       }).mount('#app')
