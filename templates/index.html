@@ -1,0 +1,1243 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title></title>
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/simple-mind-map@0.14.0-fix.3/dist/simpleMindMap.esm.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="//at.alicdn.com/t/c/font_2479351_9nsaawya01a.css"
+    />
+    <style>
+      html,
+      body {
+        width: 100%;
+        height: 100%;
+        margin: 0;
+        padding: 0;
+      }
+      * {
+        margin: 0;
+        padding: 0;
+      }
+      [v-cloak] {
+        display: none !important;
+      }
+      .container {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        height: 100%;
+      }
+      .header,
+      .footer {
+        flex-shrink: 0;
+        width: 100%;
+        height: 50px;
+      }
+      .body {
+        width: 100%;
+        height: 100%;
+        overflow: hidden;
+      }
+      .mindMapBox {
+        width: 100%;
+        height: 100%;
+        overflow: hidden;
+      }
+      .header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+      }
+      .headerCenter {
+        flex: 1;
+        display: flex;
+        justify-content: center;
+        padding: 0 16px;
+      }
+      .headerCenter input {
+        max-width: 300px;
+        width: 100%;
+        height: 30px;
+        border: 1px solid transparent;
+        border-radius: 4px;
+        text-align: center;
+        font-size: 14px;
+        color: #333;
+        background: transparent;
+        outline: none;
+        transition:
+          border-color 0.15s,
+          background 0.15s;
+      }
+      .headerCenter input:hover {
+        border-color: #ddd;
+        background: #fafafa;
+      }
+      .headerCenter input:focus {
+        border-color: #409eff;
+        background: #fff;
+      }
+      .headerRight {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        padding-right: 12px;
+      }
+      .themeBtn {
+        width: 28px;
+        height: 28px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        background: #fff;
+        cursor: pointer;
+        font-size: 14px;
+        line-height: 1;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      .themeBtn:hover {
+        background: #f0f0f0;
+      }
+      .layoutBtn {
+        width: 28px;
+        height: 28px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        background: #fff;
+        cursor: pointer;
+        font-size: 14px;
+        line-height: 1;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      .layoutBtn:hover {
+        background: #f0f0f0;
+      }
+      .exportBtn {
+        width: 28px;
+        height: 28px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        background: #fff;
+        cursor: pointer;
+        font-size: 14px;
+        line-height: 1;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      .exportBtn:hover {
+        background: #f0f0f0;
+      }
+      .sidebar {
+        position: fixed;
+        top: 0;
+        right: 0;
+        width: 260px;
+        height: 100%;
+        background: #fff;
+        box-shadow: -2px 0 8px rgba(0, 0, 0, 0.15);
+        z-index: 1000;
+        display: flex;
+        flex-direction: column;
+        overflow: hidden;
+      }
+      .sidebar-header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 14px 16px;
+        border-bottom: 1px solid #eee;
+        flex-shrink: 0;
+      }
+      .sidebar-header h3 {
+        font-size: 15px;
+        font-weight: 600;
+        color: #333;
+      }
+      .sidebar-close {
+        width: 24px;
+        height: 24px;
+        border: none;
+        background: transparent;
+        cursor: pointer;
+        font-size: 18px;
+        color: #999;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 4px;
+      }
+      .sidebar-close:hover {
+        background: #f0f0f0;
+        color: #333;
+      }
+      .sidebar-tabs {
+        display: flex;
+        border-bottom: 1px solid #eee;
+        flex-shrink: 0;
+      }
+      .sidebar-tab {
+        flex: 1;
+        padding: 10px 0;
+        text-align: center;
+        font-size: 13px;
+        color: #666;
+        cursor: pointer;
+        border: none;
+        background: transparent;
+        border-bottom: 2px solid transparent;
+        transition:
+          color 0.15s,
+          border-color 0.15s;
+      }
+      .sidebar-tab:hover {
+        color: #409eff;
+      }
+      .sidebar-tab.active {
+        color: #409eff;
+        border-bottom-color: #409eff;
+        font-weight: 500;
+      }
+      .sidebar-body {
+        flex: 1;
+        overflow-y: auto;
+        padding: 12px 16px;
+      }
+      .sidebar-section-title {
+        font-size: 12px;
+        color: #999;
+        margin-bottom: 8px;
+        margin-top: 4px;
+      }
+      .theme-list {
+        display: flex;
+        flex-direction: column;
+        gap: 6px;
+        margin-bottom: 16px;
+      }
+      .theme-item {
+        display: flex;
+        flex-direction: column;
+        padding: 8px;
+        border: 1px solid #eee;
+        border-radius: 6px;
+        cursor: pointer;
+        transition:
+          border-color 0.15s,
+          background 0.15s;
+      }
+      .theme-item:hover {
+        border-color: #409eff;
+        background: #f5f9ff;
+      }
+      .theme-item.active {
+        border-color: #409eff;
+        background: #ecf5ff;
+      }
+      .theme-item img {
+        width: 100%;
+        height: 80px;
+        aspect-ratio: 1;
+        border-radius: 4px;
+        object-fit: cover;
+        margin-bottom: 6px;
+      }
+      .theme-item span {
+        font-size: 13px;
+        color: #333;
+        text-align: center;
+      }
+      .footer {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+      }
+      .footerLeft {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        padding-left: 12px;
+      }
+      .footerLeft button {
+        width: 28px;
+        height: 28px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        background: #fff;
+        cursor: pointer;
+        font-size: 16px;
+        line-height: 1;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      .footerLeft button:hover:not(:disabled) {
+        background: #f0f0f0;
+      }
+      .footerLeft button:disabled {
+        opacity: 0.4;
+        cursor: not-allowed;
+      }
+      .footerRight {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        padding-right: 12px;
+      }
+      .footerRight button {
+        width: 28px;
+        height: 28px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        background: #fff;
+        cursor: pointer;
+        font-size: 16px;
+        line-height: 1;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      .footerRight button:hover {
+        background: #f0f0f0;
+      }
+      .footerRight input {
+        width: 60px;
+        height: 28px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        text-align: center;
+        font-size: 13px;
+        outline: none;
+      }
+      .footerRight input:focus {
+        border-color: #409eff;
+      }
+      .footerRight span {
+        font-size: 13px;
+        color: #666;
+      }
+      .shortcut-list {
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+      }
+      .shortcut-group-title {
+        font-size: 13px;
+        font-weight: 600;
+        color: #333;
+        margin-bottom: 4px;
+      }
+      .shortcut-items {
+        display: flex;
+        flex-direction: column;
+        gap: 2px;
+      }
+      .shortcut-item {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 6px 8px;
+        border-radius: 4px;
+        font-size: 13px;
+      }
+      .shortcut-item:hover {
+        background: #f5f5f5;
+      }
+      .shortcut-item-name {
+        display: flex;
+        align-items: center;
+        gap: 6px;
+        color: #333;
+      }
+      .shortcut-item-name i {
+        font-size: 16px;
+        color: #666;
+      }
+      .shortcut-item-value {
+        color: #999;
+        font-size: 12px;
+        white-space: nowrap;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container" id="app">
+      <div class="header">
+        <div class="headerLeft"></div>
+        <div class="headerCenter">
+          <input type="text" v-model="fileName" placeholder="请输入文件名" />
+        </div>
+        <div class="headerRight">
+          <button
+            class="layoutBtn"
+            @click="showLayoutSidebar = true"
+            title="切换结构"
+          >
+            <span class="iconfont iconjiegou"></span>
+          </button>
+          <button
+            class="themeBtn"
+            @click="showThemeSidebar = true"
+            title="切换主题"
+          >
+            <span class="iconfont iconjingzi"></span>
+          </button>
+          <button
+            class="exportBtn"
+            @click="showExportSidebar = true"
+            title="导出"
+          >
+            <span class="iconfont iconexport"></span>
+          </button>
+        </div>
+      </div>
+      <!-- 主题侧边栏 -->
+      <div v-if="showThemeSidebar" v-cloak class="sidebar">
+        <div class="sidebar-header">
+          <h3>选择主题</h3>
+          <button class="sidebar-close" @click="showThemeSidebar = false">
+            ×
+          </button>
+        </div>
+        <div class="sidebar-tabs">
+          <button
+            class="sidebar-tab"
+            :class="{ active: themeTab === 'light' }"
+            @click="themeTab = 'light'"
+          >
+            亮色主题
+          </button>
+          <button
+            class="sidebar-tab"
+            :class="{ active: themeTab === 'dark' }"
+            @click="themeTab = 'dark'"
+          >
+            暗色主题
+          </button>
+        </div>
+        <div class="sidebar-body" ref="sidebarBodyRef">
+          <div v-show="themeTab === 'light'" class="theme-list">
+            <div
+              v-for="t in themeList.lightList"
+              :key="t.value"
+              class="theme-item"
+              :class="{ active: theme === t.value }"
+              @click="useTheme(t)"
+            >
+              <img :src="t.img" :alt="t.name" />
+              <span>{{ t.name }}</span>
+            </div>
+          </div>
+
+          <div v-show="themeTab === 'dark'" class="theme-list">
+            <div
+              v-for="t in themeList.darkList"
+              :key="t.value"
+              class="theme-item"
+              :class="{ active: theme === t.value }"
+              @click="useTheme(t)"
+            >
+              <img :src="t.img" :alt="t.name" />
+              <span>{{ t.name }}</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- 结构侧边栏 -->
+      <div v-if="showLayoutSidebar" v-cloak class="sidebar">
+        <div class="sidebar-header">
+          <h3>选择结构</h3>
+          <button class="sidebar-close" @click="showLayoutSidebar = false">
+            ×
+          </button>
+        </div>
+        <div class="sidebar-body">
+          <div class="theme-list">
+            <div
+              v-for="l in layoutList"
+              :key="l.value"
+              class="theme-item"
+              :class="{ active: layout === l.value }"
+              @click="useLayout(l.value)"
+            >
+              <div style="padding: 8px 0">
+                <div style="font-size: 14px; color: #333; font-weight: 500">
+                  {{ l.name }}
+                </div>
+                <div
+                  v-if="l.desc"
+                  style="font-size: 12px; color: #999; margin-top: 4px"
+                >
+                  {{ l.desc }}
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- 导出侧边栏 -->
+      <div v-if="showExportSidebar" v-cloak class="sidebar">
+        <div class="sidebar-header">
+          <h3>导出文件</h3>
+          <button class="sidebar-close" @click="showExportSidebar = false">
+            ×
+          </button>
+        </div>
+        <div class="sidebar-body">
+          <div class="theme-list">
+            <div
+              v-for="item in exportList"
+              :key="item.type"
+              class="theme-item"
+              @click="doExport(item.type)"
+              style="display: flex; flex-direction: row; padding-left: 0"
+            >
+              <div
+                style="
+                  width: 50px;
+                  display: flex;
+                  justify-content: center;
+                  flex-shrink: 0;
+                "
+              >
+                <span
+                  class="iconfont"
+                  :class="[item.icon]"
+                  :style="{ fontSize: '25px', color: item.color }"
+                ></span>
+              </div>
+              <div>
+                <div style="font-size: 14px; color: #333; font-weight: 500">
+                  {{ item.name }}
+                </div>
+                <div
+                  v-if="item.desc"
+                  style="font-size: 12px; color: #999; margin-top: 4px"
+                >
+                  {{ item.desc }}
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- 快捷键侧边栏 -->
+      <div
+        v-if="showShortcutSidebar"
+        v-cloak
+        class="sidebar"
+        style="width: 300px"
+      >
+        <div class="sidebar-header">
+          <h3>快捷键</h3>
+          <button class="sidebar-close" @click="showShortcutSidebar = false">
+            ×
+          </button>
+        </div>
+        <div class="sidebar-body">
+          <div class="shortcut-list">
+            <div v-for="group in shortcutKeyList" :key="group.type">
+              <div class="shortcut-group-title">{{ group.type }}</div>
+              <div class="shortcut-items">
+                <div
+                  v-for="item in group.list"
+                  :key="item.name"
+                  class="shortcut-item"
+                >
+                  <div class="shortcut-item-name">
+                    <i class="iconfont" :class="item.icon"></i>
+                    <span>{{ item.name }}</span>
+                  </div>
+                  <div class="shortcut-item-value">{{ item.value }}</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="body">
+        <div class="mindMapBox" id="mindMapBox" ref="mindMapBoxRef"></div>
+      </div>
+      <div class="footer">
+        <div class="footerLeft">
+          <button @click="back" :disabled="backEnd" title="后退">
+            <span class="iconfont iconhoutui-shi"></span>
+          </button>
+          <button @click="forward" :disabled="forwardEnd" title="前进">
+            <span class="iconfont iconqianjin1"></span>
+          </button>
+        </div>
+        <div class="footerRight">
+          <button @click="backToRoot" title="回到根节点">
+            <span class="iconfont icondingwei"></span>
+          </button>
+          <button @click="fit" title="适应画布">
+            <span class="iconfont iconquanping1"></span>
+          </button>
+          <button @click="narrow" title="缩小">
+            <span class="iconfont iconsuoxiao1"></span>
+          </button>
+          <input
+            type="number"
+            v-model="scaleNum"
+            @change="scaleByNum(scaleNum)"
+          />
+          <span>%</span>
+          <button @click="enlarge" title="放大">
+            <span class="iconfont iconfangda"></span>
+          </button>
+          <button @click="showShortcutSidebar = true" title="快捷键">
+            <span class="iconfont iconjianpan"></span>
+          </button>
+          <button
+            class="readonlyBtn"
+            @click="toggleMode"
+            :title="isReadonly ? '切换为编辑模式' : '切换为只读模式'"
+          >
+            <span
+              class="iconfont"
+              :class="isReadonly ? 'iconyanjing' : 'iconbianji1'"
+            ></span>
+          </button>
+        </div>
+      </div>
+    </div>
+    <script type="module">
+      import { createApp } from 'https://unpkg.com/vue@3/dist/vue.esm-browser.js'
+      import SimpleMindMap from 'https://unpkg.com/simple-mind-map@0.14.0-fix.3/dist/simpleMindMap.esm.min.js'
+      import Themes from 'https://unpkg.com/simple-mind-map-plugin-themes@1.0.1/dist/themes.esm.min.js'
+      Themes.init(SimpleMindMap)
+      // const MIND_MAP_TITLE = '<!--MIND_MAP_TITLE-->'
+      // const THEME = '<!--MIND_MAP_THEME-->'
+      // const LAYOUT = '<!--MIND_MAP_LAYOUT-->'
+      // const MIND_MAP_DATA = <!--MIND_MAP_DATA-->
+      // 测试代码开始
+      let MIND_MAP_TITLE = '杭州三日游'
+      let THEME = 'dark4'
+      let LAYOUT = 'logicalStructure'
+      let MIND_MAP_DATA = null
+      const getData = async () => {
+        const res = await fetch('../examples/base.json')
+        MIND_MAP_DATA = await res.json()
+      }
+      await getData()
+      // 测试代码结束
+      // 解析URL查询参数
+      const getUrlParams = () => {
+        const params = new URLSearchParams(window.location.search)
+        return {
+          theme: params.get('theme'),
+          layout: params.get('layout'),
+          name: params.get('name'),
+          readonly: params.get('readonly')
+        }
+      }
+      const urlParams = getUrlParams()
+      if (urlParams.theme) {
+        THEME = urlParams.theme
+      }
+      if (urlParams.layout) {
+        LAYOUT = urlParams.layout
+      }
+      if (urlParams.name) {
+        MIND_MAP_TITLE = urlParams.name
+      }
+      // 更新URL查询参数的工具函数
+      const updateUrlParams = (key, value) => {
+        const url = new URL(window.location.href)
+        if (value) {
+          url.searchParams.set(key, value)
+        } else {
+          url.searchParams.delete(key)
+        }
+        window.history.replaceState({}, '', url.toString())
+      }
+      // 缩放功能
+      const scaleMixin = {
+        data() {
+          return {
+            scaleNum: 100
+          }
+        },
+        methods: {
+          bindScaleEvents() {
+            this.mindMap.on('scale', this.onScale)
+          },
+          // 画布缩小
+          narrow() {
+            this.mindMap.view.narrow()
+          },
+          // 画布放大
+          enlarge() {
+            this.mindMap.view.enlarge()
+          },
+          // 缩放指定倍数
+          scaleByNum(scaleNum) {
+            scaleNum = Number(scaleNum)
+            if (Number.isNaN(scaleNum) || scaleNum <= 0) {
+              scaleNum = 100
+              this.scaleNum = scaleNum
+            }
+            const cx = this.mindMap.width / 2
+            const cy = this.mindMap.height / 2
+            this.mindMap.view.setScale(scaleNum / 100, cx, cy)
+          },
+          onScale(scale) {
+            this.scaleNum = this.toPer(scale)
+          },
+          // 转换成百分数
+          toPer(scale) {
+            return (scale * 100).toFixed(0)
+          }
+        }
+      }
+      // 主题
+      const imgBaseUrl =
+        'https://unpkg.com/simple-mind-map-plugin-themes@1.0.1/src/imgs/'
+      const themeMixin = {
+        data() {
+          return {
+            theme: THEME,
+            showThemeSidebar: false,
+            themeTab: 'light',
+            themeList: {
+              lightList: (Themes.lightList || []).map(item => {
+                return {
+                  ...item,
+                  img:
+                    imgBaseUrl +
+                    ([
+                      'classic8',
+                      'classic9',
+                      'classic10',
+                      'classic11',
+                      'classic12',
+                      'classic13',
+                      'classic14',
+                      'classic15'
+                    ].includes(item.value)
+                      ? item.value + '.png'
+                      : item.value + '.jpg')
+                }
+              }),
+              darkList: (Themes.darkList || []).map(item => {
+                return {
+                  ...item,
+                  img:
+                    imgBaseUrl +
+                    (['dark5', 'dark6', 'dark7'].includes(item.value)
+                      ? item.value + '.png'
+                      : item.value + '.jpg')
+                }
+              })
+            }
+          }
+        },
+        watch: {
+          themeTab() {
+            this.$nextTick(() => {
+              if (this.$refs.sidebarBodyRef) {
+                this.$refs.sidebarBodyRef.scrollTop = 0
+              }
+            })
+          }
+        },
+        methods: {
+          bindThemeEvents() {
+            this.mindMap.on('view_theme_change', this.handleViewThemeChange)
+            this.mindMap.on('node_click', this.hideThemeSidebar)
+            this.mindMap.on('draw_click', this.hideThemeSidebar)
+            this.mindMap.on('svg_mousedown', this.hideThemeSidebar)
+          },
+          hideThemeSidebar() {
+            this.showThemeSidebar = false
+          },
+          handleViewThemeChange() {
+            this.theme = this.mindMap.getTheme()
+          },
+          // 切换主题
+          useTheme(theme) {
+            if (theme.value === this.theme) return
+            this.theme = theme.value
+            this.mindMap.execCommand('REMOVE_ALL_NODE_CUSTOM_STYLES')
+            this.mindMap.setTheme(theme.value)
+            updateUrlParams('theme', theme.value)
+          }
+        }
+      }
+      // 结构
+      const layoutMixin = {
+        data() {
+          return {
+            layoutList: [
+              {
+                name: '逻辑结构图',
+                value: 'logicalStructure',
+                desc: '默认结构，大多数情况下推荐使用'
+              },
+              {
+                name: '逻辑结构图（左）',
+                value: 'logicalStructureLeft'
+              },
+              {
+                name: '思维导图',
+                value: 'mindMap'
+              },
+              {
+                name: '目录组织图',
+                value: 'catalogOrganization'
+              },
+              {
+                name: '组织结构图',
+                value: 'organizationStructure'
+              },
+              {
+                name: '时间轴',
+                value: 'timeline'
+              },
+              {
+                name: '时间轴',
+                value: 'timeline2',
+                desc: '上下交替型'
+              },
+              {
+                name: '竖向时间轴',
+                value: 'verticalTimeline',
+                desc: '三级节点左右交替分布'
+              },
+              {
+                name: '竖向时间轴',
+                value: 'verticalTimeline2',
+                desc: '三级节点全部分布在左侧'
+              },
+              {
+                name: '竖向时间轴',
+                value: 'verticalTimeline3',
+                desc: '三级节点全部分布在右侧'
+              },
+              {
+                name: '鱼骨图',
+                value: 'fishbone'
+              },
+              {
+                name: '带鱼头鱼尾形状的鱼骨图',
+                value: 'fishbone2'
+              }
+            ],
+            layout: LAYOUT,
+            showLayoutSidebar: false
+          }
+        },
+        methods: {
+          bindLayoutEvents() {
+            this.mindMap.on('node_click', this.hideLayoutSidebar)
+            this.mindMap.on('draw_click', this.hideLayoutSidebar)
+            this.mindMap.on('svg_mousedown', this.hideLayoutSidebar)
+          },
+          hideLayoutSidebar() {
+            this.showLayoutSidebar = false
+          },
+          useLayout(layout) {
+            this.layout = layout
+            this.mindMap.setLayout(layout)
+            updateUrlParams('layout', layout)
+          }
+        }
+      }
+      // 导出
+      const exportMixin = {
+        data() {
+          return {
+            showExportSidebar: false,
+            exportList: [
+              {
+                name: '图片',
+                type: 'png',
+                icon: 'iconPNG',
+                color: '#4A90D9',
+                desc: '常用图片格式，适合查看分享'
+              },
+              {
+                name: 'SVG',
+                type: 'svg',
+                icon: 'iconSVG',
+                color: '#FF9800',
+                desc: '可缩放矢量图形'
+              },
+              {
+                name: 'PDF',
+                type: 'pdf',
+                icon: 'iconpdf',
+                color: '#E53935',
+                desc: '适合查看浏览和打印'
+              },
+              {
+                name: 'Markdown',
+                type: 'md',
+                icon: 'iconmarkdown',
+                color: '#333333',
+                desc: 'md文本格式，便于其他软件打开'
+              },
+              {
+                name: 'XMind',
+                type: 'xmind',
+                icon: 'iconxmind',
+                color: '#8E24AA',
+                desc: 'XMind软件格式'
+              },
+              {
+                name: 'Txt',
+                type: 'txt',
+                icon: 'iconTXT',
+                color: '#78909C',
+                desc: '纯文本文件'
+              },
+              {
+                name: 'JSON',
+                type: 'json',
+                icon: 'iconjson',
+                color: '#43A047',
+                desc: '流行的数据交换格式，可用于再次导入'
+              }
+            ],
+            exportType: '',
+            imageFormat: 'png'
+          }
+        },
+        methods: {
+          bindExportEvents() {
+            this.mindMap.on('node_click', this.hideExportSidebar)
+            this.mindMap.on('draw_click', this.hideExportSidebar)
+            this.mindMap.on('svg_mousedown', this.hideExportSidebar)
+          },
+          hideExportSidebar() {
+            this.showExportSidebar = false
+          },
+          doExport(type) {
+            this.exportType = type
+            if (this.exportType === 'svg') {
+              this.mindMap.export(
+                this.exportType,
+                true,
+                this.fileName,
+                `* {
+                  margin: 0;
+                  padding: 0;
+                  box-sizing: border-box;
+                }`
+              )
+            } else if (['smm', 'json'].includes(this.exportType)) {
+              this.mindMap.export(this.exportType, true, this.fileName, true)
+            } else if (this.exportType === 'png') {
+              this.mindMap.export(
+                this.imageFormat,
+                true,
+                this.fileName,
+                false,
+                null
+              )
+            } else if (this.exportType === 'pdf') {
+              this.mindMap.export(this.exportType, true, this.fileName, false)
+            } else {
+              this.mindMap.export(this.exportType, true, this.fileName)
+            }
+            this.showExportSidebar = false
+          }
+        }
+      }
+      // 快捷键
+      const isMac = navigator.platform.toUpperCase().indexOf('MAC') >= 0
+      const ctrl = isMac ? '⌘' : 'Ctrl'
+      const enter = isMac ? 'Return' : 'Enter'
+      const macFn = isMac ? 'fn + ' : ''
+      const shortcutMixin = {
+        data() {
+          return {
+            showShortcutSidebar: false,
+            shortcutKeyList: [
+              {
+                type: '节点操作',
+                list: [
+                  {
+                    icon: 'icontianjiazijiedian',
+                    name: '插入下级节点',
+                    value: 'Tab | Insert'
+                  },
+                  {
+                    icon: 'iconjiedian',
+                    name: '插入同级节点',
+                    value: enter
+                  },
+                  {
+                    icon: 'icondodeparent',
+                    name: '插入父节点',
+                    value: 'Shift + Tab'
+                  },
+                  {
+                    icon: 'iconshangyi',
+                    name: '上移节点',
+                    value: `${ctrl} + ↑`
+                  },
+                  {
+                    icon: 'iconxiayi',
+                    name: '下移节点',
+                    value: `${ctrl} + ↓`
+                  },
+                  {
+                    icon: 'icongaikuozonglan',
+                    name: '插入概要',
+                    value: `${ctrl} + G`
+                  },
+                  {
+                    icon: 'iconzhankai',
+                    name: '展开/收起节点',
+                    value: '/'
+                  },
+                  {
+                    icon: 'iconshanchu',
+                    name: '删除节点',
+                    value: 'Delete | Backspace'
+                  },
+                  {
+                    icon: 'iconshanchu',
+                    name: '仅删除当前节点',
+                    value: 'Shift + Backspace'
+                  },
+                  {
+                    icon: 'iconfuzhi',
+                    name: '复制节点',
+                    value: `${ctrl} + C`
+                  },
+                  {
+                    icon: 'iconjianqie',
+                    name: '剪切节点',
+                    value: `${ctrl} + X`
+                  },
+                  {
+                    icon: 'iconniantie',
+                    name: '粘贴节点',
+                    value: `${ctrl} + V`
+                  },
+                  {
+                    icon: 'iconbianji',
+                    name: '编辑节点',
+                    value: macFn + 'F2'
+                  },
+                  {
+                    icon: 'iconhuanhang',
+                    name: '文本换行',
+                    value: `Shift + ${enter}`
+                  },
+                  {
+                    icon: 'iconhoutui-shi',
+                    name: '回退',
+                    value: `${ctrl} + Z`
+                  },
+                  {
+                    icon: 'iconqianjin1',
+                    name: '前进',
+                    value: `${ctrl} + Y`
+                  },
+                  {
+                    icon: 'iconquanxuan',
+                    name: '全选',
+                    value: `${ctrl} + A`
+                  },
+                  {
+                    icon: 'iconquanxuan',
+                    name: '多选',
+                    value: `右键 / ${ctrl} + 左键`
+                  },
+                  {
+                    icon: 'iconzhengli',
+                    name: '一键整理布局',
+                    value: `${ctrl} + L`
+                  },
+                  {
+                    icon: 'iconsousuo',
+                    name: '搜索和替换',
+                    value: `${ctrl} + F`
+                  }
+                ]
+              },
+              {
+                type: '画布操作',
+                list: [
+                  {
+                    icon: 'iconfangda',
+                    name: '放大',
+                    value: `${ctrl} + +`
+                  },
+                  {
+                    icon: 'iconsuoxiao',
+                    name: '缩小',
+                    value: `${ctrl} + -`
+                  },
+                  {
+                    icon: 'iconfangda',
+                    name: '放大/缩小',
+                    value: `${ctrl} + 鼠标滚动`
+                  },
+                  {
+                    icon: 'icondingwei',
+                    name: '回到根节点',
+                    value: `${ctrl} + ${enter}`
+                  },
+                  {
+                    icon: 'iconquanping1',
+                    name: '适应画布',
+                    value: `${ctrl} + i`
+                  }
+                ]
+              },
+              {
+                type: '大纲操作',
+                list: [
+                  {
+                    icon: 'iconhuanhang',
+                    name: '文本换行',
+                    value: `Shift + ${enter}`
+                  },
+                  {
+                    icon: 'iconshanchu',
+                    name: '删除节点',
+                    value: 'Delete'
+                  },
+                  {
+                    icon: 'icontianjiazijiedian',
+                    name: '插入下级节点',
+                    value: 'Tab'
+                  },
+                  {
+                    icon: 'iconjiedian',
+                    name: '插入同级节点',
+                    value: enter
+                  },
+                  {
+                    icon: 'icondodeparent',
+                    name: '上移一个层级',
+                    value: 'Shift + Tab'
+                  }
+                ]
+              }
+            ]
+          }
+        },
+        methods: {
+          bindShortcutEvents() {
+            this.mindMap.on('node_click', this.hideShortcutSidebar)
+            this.mindMap.on('draw_click', this.hideShortcutSidebar)
+            this.mindMap.on('svg_mousedown', this.hideShortcutSidebar)
+          },
+          hideShortcutSidebar() {
+            this.showShortcutSidebar = false
+          }
+        }
+      }
+      // 前进后退
+      const historyMixin = {
+        data() {
+          return {
+            backEnd: true,
+            forwardEnd: true
+          }
+        },
+        methods: {
+          bindHistoryEvents() {
+            this.mindMap.on('back_forward', this.onBackForward)
+          },
+          // 监听前进后退
+          onBackForward(index, len) {
+            this.backEnd = index <= 0
+            this.forwardEnd = index >= len - 1
+          },
+          // 后退
+          back() {
+            this.mindMap.execCommand('BACK')
+          },
+          // 前进
+          forward() {
+            this.mindMap.execCommand('FORWARD')
+          }
+        }
+      }
+      // 创建应用实例
+      createApp({
+        mixins: [
+          scaleMixin,
+          themeMixin,
+          layoutMixin,
+          exportMixin,
+          shortcutMixin,
+          historyMixin
+        ],
+        data() {
+          return {
+            mindMap: null,
+            fileName: MIND_MAP_TITLE,
+            isReadonly: !!urlParams.readonly
+          }
+        },
+        watch: {
+          fileName(newVal) {
+            updateUrlParams('name', newVal)
+            this.setTitle()
+          }
+        },
+        mounted() {
+          this.setTitle()
+          this.initMindMap()
+          window.addEventListener('resize', this.handleResize)
+        },
+        methods: {
+          // 初始化及渲染思维导图
+          initMindMap() {
+            this.mindMap = new SimpleMindMap({
+              el: this.$refs.mindMapBoxRef,
+              data: MIND_MAP_DATA,
+              theme: THEME,
+              layout: LAYOUT,
+              readonly: this.isReadonly
+            })
+            this.bindScaleEvents()
+            this.bindThemeEvents()
+            this.bindLayoutEvents()
+            this.bindExportEvents()
+            this.bindHistoryEvents()
+          },
+          // 窗口大小改变时，调整画布大小
+          handleResize() {
+            this.mindMap.resize()
+          },
+          // 回到根节点
+          backToRoot() {
+            this.mindMap.renderer.setRootNodeCenter()
+          },
+          // 适应画布大小
+          fit() {
+            this.mindMap.view.fit()
+          },
+          // 切换只读模式
+          toggleMode() {
+            this.isReadonly = !this.isReadonly
+            updateUrlParams('readonly', this.isReadonly ? '1' : null)
+            this.mindMap.setMode(this.isReadonly ? 'readonly' : 'edit')
+          },
+          // 更新页面标题
+          setTitle() {
+            document.title = this.fileName
+          }
+        }
+      }).mount('#app')
+    </script>
+  </body>
+</html>

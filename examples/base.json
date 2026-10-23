@@ -1,0 +1,493 @@
+{
+  "data": {
+    "text": "杭州生日游"
+  },
+  "children": [
+    {
+      "data": {
+        "text": "必游景点"
+      },
+      "children": [
+        {
+          "data": {
+            "text": "西湖"
+          },
+          "children": [
+            {
+              "data": {
+                "text": "断桥残雪"
+              }
+            },
+            {
+              "data": {
+                "text": "雷峰塔"
+              }
+            },
+            {
+              "data": {
+                "text": "三潭印月"
+              }
+            },
+            {
+              "data": {
+                "text": "苏堤春晓"
+              }
+            }
+          ]
+        },
+        {
+          "data": {
+            "text": "灵隐寺"
+          },
+          "children": [
+            {
+              "data": {
+                "text": "祈福许愿"
+              }
+            },
+            {
+              "data": {
+                "text": "飞来峰"
+              }
+            }
+          ]
+        },
+        {
+          "data": {
+            "text": "西溪湿地"
+          },
+          "children": [
+            {
+              "data": {
+                "text": "摇橹船"
+              }
+            },
+            {
+              "data": {
+                "text": "湿地步道"
+              }
+            }
+          ]
+        },
+        {
+          "data": {
+            "text": "宋城"
+          },
+          "children": [
+            {
+              "data": {
+                "text": "宋城千古情演出"
+              }
+            },
+            {
+              "data": {
+                "text": "古装体验"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "data": {
+        "text": "美食推荐"
+      },
+      "children": [
+        {
+          "data": {
+            "text": "杭帮菜"
+          },
+          "children": [
+            {
+              "data": {
+                "text": "西湖醋鱼"
+              }
+            },
+            {
+              "data": {
+                "text": "东坡肉"
+              }
+            },
+            {
+              "data": {
+                "text": "龙井虾仁"
+              }
+            },
+            {
+              "data": {
+                "text": "叫花鸡"
+              }
+            }
+          ]
+        },
+        {
+          "data": {
+            "text": "特色小吃"
+          },
+          "children": [
+            {
+              "data": {
+                "text": "知味观小笼包"
+              }
+            },
+            {
+              "data": {
+                "text": "片儿川"
+              }
+            },
+            {
+              "data": {
+                "text": "定胜糕"
+              }
+            }
+          ]
+        },
+        {
+          "data": {
+            "text": "网红餐厅"
+          },
+          "children": [
+            {
+              "data": {
+                "text": "外婆家"
+              }
+            },
+            {
+              "data": {
+                "text": "绿茶餐厅"
+              }
+            },
+            {
+              "data": {
+                "text": "新白鹿"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "data": {
+        "text": "生日活动"
+      },
+      "children": [
+        {
+          "data": {
+            "text": "西湖游船"
+          },
+          "children": [
+            {
+              "data": {
+                "text": "手划船"
+              }
+            },
+            {
+              "data": {
+                "text": "画舫"
+              }
+            }
+          ]
+        },
+        {
+          "data": {
+            "text": "生日蛋糕"
+          },
+          "children": [
+            {
+              "data": {
+                "text": "提前预订"
+              }
+            },
+            {
+              "data": {
+                "text": "湖景餐厅庆祝"
+              }
+            }
+          ]
+        },
+        {
+          "data": {
+            "text": "拍照打卡"
+          },
+          "children": [
+            {
+              "data": {
+                "text": "断桥"
+              }
+            },
+            {
+              "data": {
+                "text": "雷峰塔"
+              }
+            },
+            {
+              "data": {
+                "text": "太子湾公园"
+              }
+            }
+          ]
+        },
+        {
+          "data": {
+            "text": "夜游"
+          },
+          "children": [
+            {
+              "data": {
+                "text": "西湖音乐喷泉"
+              }
+            },
+            {
+              "data": {
+                "text": "河坊街夜市"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "data": {
+        "text": "住宿建议"
+      },
+      "children": [
+        {
+          "data": {
+            "text": "西湖边酒店"
+          },
+          "children": [
+            {
+              "data": {
+                "text": "湖景房"
+              }
+            },
+            {
+              "data": {
+                "text": "步行可达景点"
+              }
+            }
+          ]
+        },
+        {
+          "data": {
+            "text": "特色民宿"
+          },
+          "children": [
+            {
+              "data": {
+                "text": "满觉陇"
+              }
+            },
+            {
+              "data": {
+                "text": "青芝坞"
+              }
+            }
+          ]
+        },
+        {
+          "data": {
+            "text": "高端酒店"
+          },
+          "children": [
+            {
+              "data": {
+                "text": "西湖国宾馆"
+              }
+            },
+            {
+              "data": {
+                "text": "安缦法云"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "data": {
+        "text": "交通出行"
+      },
+      "children": [
+        {
+          "data": {
+            "text": "到达杭州"
+          },
+          "children": [
+            {
+              "data": {
+                "text": "高铁（杭州东站）"
+              }
+            },
+            {
+              "data": {
+                "text": "飞机（萧山机场）"
+              }
+            }
+          ]
+        },
+        {
+          "data": {
+            "text": "市内交通"
+          },
+          "children": [
+            {
+              "data": {
+                "text": "地铁"
+              }
+            },
+            {
+              "data": {
+                "text": "公交"
+              }
+            },
+            {
+              "data": {
+                "text": "共享单车"
+              }
+            },
+            {
+              "data": {
+                "text": "打车"
+              }
+            }
+          ]
+        },
+        {
+          "data": {
+            "text": "景区交通"
+          },
+          "children": [
+            {
+              "data": {
+                "text": "环湖电瓶车"
+              }
+            },
+            {
+              "data": {
+                "text": "游船"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "data": {
+        "text": "购物特产"
+      },
+      "children": [
+        {
+          "data": {
+            "text": "龙井茶"
+          }
+        },
+        {
+          "data": {
+            "text": "丝绸制品"
+          }
+        },
+        {
+          "data": {
+            "text": "西湖藕粉"
+          }
+        },
+        {
+          "data": {
+            "text": "张小泉剪刀"
+          }
+        },
+        {
+          "data": {
+            "text": "购物地点"
+          },
+          "children": [
+            {
+              "data": {
+                "text": "河坊街"
+              }
+            },
+            {
+              "data": {
+                "text": "湖滨银泰"
+              }
+            },
+            {
+              "data": {
+                "text": "武林广场"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "data": {
+        "text": "行程建议"
+      },
+      "children": [
+        {
+          "data": {
+            "text": "一日游"
+          },
+          "children": [
+            {
+              "data": {
+                "text": "上午：西湖游览"
+              }
+            },
+            {
+              "data": {
+                "text": "下午：灵隐寺"
+              }
+            },
+            {
+              "data": {
+                "text": "晚上：河坊街"
+              }
+            }
+          ]
+        },
+        {
+          "data": {
+            "text": "两日游"
+          },
+          "children": [
+            {
+              "data": {
+                "text": "Day1：西湖+宋城"
+              }
+            },
+            {
+              "data": {
+                "text": "Day2：西溪湿地+购物"
+              }
+            }
+          ]
+        },
+        {
+          "data": {
+            "text": "三日游"
+          },
+          "children": [
+            {
+              "data": {
+                "text": "Day1：西湖全景"
+              }
+            },
+            {
+              "data": {
+                "text": "Day2：灵隐寺+西溪"
+              }
+            },
+            {
+              "data": {
+                "text": "Day3：宋城+购物"
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
