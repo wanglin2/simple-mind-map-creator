@@ -628,20 +628,20 @@
       import SimpleMindMap from 'https://unpkg.com/simple-mind-map@0.14.0-fix.3/dist/simpleMindMap.esm.min.js'
       import Themes from 'https://unpkg.com/simple-mind-map-plugin-themes@1.0.1/dist/themes.esm.min.js'
       Themes.init(SimpleMindMap)
-      // const MIND_MAP_TITLE = '<!--MIND_MAP_TITLE-->'
-      // const THEME = '<!--MIND_MAP_THEME-->'
-      // const LAYOUT = '<!--MIND_MAP_LAYOUT-->'
-      // const MIND_MAP_DATA = <!--MIND_MAP_DATA-->
+      const MIND_MAP_TITLE = '__MIND_MAP_TITLE__'
+      const THEME = '__MIND_MAP_THEME__'
+      const LAYOUT = '__MIND_MAP_LAYOUT__'
+      const MIND_MAP_DATA = __MIND_MAP_DATA__
       // 测试代码开始
-      let MIND_MAP_TITLE = '杭州三日游'
-      let THEME = 'dark4'
-      let LAYOUT = 'logicalStructure'
-      let MIND_MAP_DATA = null
-      const getData = async () => {
-        const res = await fetch('../examples/base.json')
-        MIND_MAP_DATA = await res.json()
-      }
-      await getData()
+      // let MIND_MAP_TITLE = '杭州三日游'
+      // let THEME = 'dark4'
+      // let LAYOUT = 'logicalStructure'
+      // let MIND_MAP_DATA = null
+      // const getData = async () => {
+      //   const res = await fetch('../examples/base.json')
+      //   MIND_MAP_DATA = await res.json()
+      // }
+      // await getData()
       // 测试代码结束
       // 解析URL查询参数
       const getUrlParams = () => {
